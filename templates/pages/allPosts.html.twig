@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+
+{% block body %}
+    <div>
+        {% for post in posts %}
+            {% include 'components/card.html.twig' %}
+        {% endfor %}
+    </div>
+{% endblock %}

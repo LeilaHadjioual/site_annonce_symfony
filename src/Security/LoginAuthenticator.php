@@ -80,7 +80,6 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
         // If there are no credentials to check, you can just return true
         //throw new \Exception('TODO: check the credentials inside '.__FILE__);
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
-
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
