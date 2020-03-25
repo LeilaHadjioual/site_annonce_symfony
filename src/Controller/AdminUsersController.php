@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @IsGranted("ROLE_ADMIN")
@@ -17,6 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AdminUsersController extends AbstractController
 {
+
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     /**
      * @Route("/", name="users_index", methods={"GET"})
      */
@@ -37,6 +49,8 @@ class AdminUsersController extends AbstractController
         $form->handleRequest($request);
         $role = 'ROLE_USER';
         $user->setRole($role);
+        $password = $user->getPassword();
+        $user->setPassword($this->encoder->encodePassword($user, $password));
 //        $em = $this->getDoctrine()->getManager();
 ////        $em->persist($user);
 ////        $em->flush();
