@@ -18,7 +18,6 @@ class PostsType extends AbstractType
             ->add('image')
             ->add('title')
             ->add('description')
-//            ->add('user')
             ->add('user', EntityType::class, [
                 'class' => Users::class,
                 'choice_label' => 'firstname',
@@ -33,6 +32,7 @@ class PostsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Posts::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

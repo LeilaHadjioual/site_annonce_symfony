@@ -13,14 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/users")
  */
-class UsersController extends AbstractController
+class AdminUsersController extends AbstractController
 {
     /**
      * @Route("/", name="users_index", methods={"GET"})
      */
     public function index(UsersRepository $usersRepository): Response
     {
-        return $this->render('users/index.html.twig', [
+        return $this->render('back_office/users/index.html.twig', [
             'users' => $usersRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class UsersController extends AbstractController
             return $this->redirectToRoute('users_index');
         }
 
-        return $this->render('users/new.html.twig', [
+        return $this->render('back_office/users/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class UsersController extends AbstractController
      */
     public function show(Users $user): Response
     {
-        return $this->render('users/show.html.twig', [
+        return $this->render('back_office/users/show.html.twig', [
             'user' => $user,
         ]);
     }
@@ -72,7 +72,7 @@ class UsersController extends AbstractController
             return $this->redirectToRoute('users_index');
         }
 
-        return $this->render('users/edit.html.twig', [
+        return $this->render('back_office/users/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);

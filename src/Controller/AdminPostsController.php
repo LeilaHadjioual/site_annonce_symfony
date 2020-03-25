@@ -13,14 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/posts")
  */
-class PostsController extends AbstractController
+class AdminPostsController extends AbstractController
 {
     /**
      * @Route("/", name="posts_index", methods={"GET"})
      */
     public function index(PostsRepository $postsRepository): Response
     {
-        return $this->render('posts/index.html.twig', [
+        return $this->render('back_office/posts/index.html.twig', [
             'posts' => $postsRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class PostsController extends AbstractController
             return $this->redirectToRoute('posts_index');
         }
 
-        return $this->render('posts/new.html.twig', [
+        return $this->render('back_office/posts/new.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class PostsController extends AbstractController
      */
     public function show(Posts $post): Response
     {
-        return $this->render('posts/show.html.twig', [
+        return $this->render('back_office/posts/show.html.twig', [
             'post' => $post,
         ]);
     }
@@ -72,7 +72,7 @@ class PostsController extends AbstractController
             return $this->redirectToRoute('posts_index');
         }
 
-        return $this->render('posts/edit.html.twig', [
+        return $this->render('back_office/posts/edit.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
         ]);

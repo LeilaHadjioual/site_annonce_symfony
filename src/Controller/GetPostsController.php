@@ -24,21 +24,21 @@ class GetPostsController extends AbstractController
     }
 
 
-    /**
-     * @Route("/",name="all-posts")
-     */
-    public function indexPosts(): Response
-    {
-        $posts = $this->postsRepository->findAll();
-        return $this->render('pages/allPosts.html.twig', ['posts' => $posts]);
-    }
+//    /**
+//     * @Route("/",name="all-posts")
+//     */
+//    public function index(): Response
+//    {
+//        $posts = $this->postsRepository->findAll();
+//        return $this->render('pages/allPosts.html.twig', ['posts' => $posts]);
+//    }
 
-
-    /**
-     * @Route("/post/{id}", name="get_post", methods={"GET"})
-     */
-    function getById(Posts $post): Response
-    {
-        return $this->render('pages/detailsPost.html.twig', ['post' => $post]);
-    }
+//
+//    /**
+//     * @Route("/post/{id}", name="get_post", methods={"GET"})
+//     */
+//    function getById(Posts $post): Response
+//    {
+//        return $this->render('pages/detailsPost.html.twig', ['post' => $post]);
+//    }
 }

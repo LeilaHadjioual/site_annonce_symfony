@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+{#    {{ form_widget(form) }}#}
+{{ form_row(form.title) }}
+{{ form_row(form.description) }}
+{{ form_row(form.image) }}
+   {% if is_granted('ROLE_ADMIN') %}
+       {{ form_row(form.user) }}
+   {% endif %}
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

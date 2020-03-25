@@ -24,6 +24,7 @@ class UsersType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Users::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

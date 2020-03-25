@@ -1,13 +1,22 @@
-{% extends 'base.html.twig' %}
+{#{% extends 'base.html.twig' %}#}
 
-{% block stylesheets %}
-{% endblock %}
 
 
 {% block body %}
-    <div>
-        {% for post in posts %}
-            {% include 'components/card.html.twig' %}
-        {% endfor %}
+    <div class="">
+        <div class="jumbotron" style="text-align: center">
+            <h1>Bienvenue sur votre site d'annonce et d'entraide en ligne</h1>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="container" style="margin: auto">
+            <div class="column flex">
+                {% for post in posts %}
+                    {% include 'components/card.html.twig' %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}

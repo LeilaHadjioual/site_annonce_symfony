@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Posts{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div>
+            <h1>Créer une annonce</h1>
+            {{ include('back_office/posts/_form.html.twig') }}
+        </div>
+
+        <div>
+            <a href="{{ path('posts_index') }}">back to list</a>
+        </div>
+    </div>
+{% endblock %}
