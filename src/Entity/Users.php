@@ -6,9 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @UniqueEntity("email")
  */
 class Users implements UserInterface
 {
@@ -20,26 +23,45 @@ class Users implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le prénom doit avoir au moins {{ limit }} caractères",
+     *      maxMessage = "Le prénom ne doit pas avoir plus de {{ limit }} caractères",
+     *      allowEmptyString = false
+     *     )
+     * @ORM\Column(type="string")
      */
     private $firstname;
 
     /**
+     * * @Assert\Length(
+     *      min = 2,
+     *      max = 60,
+     *      minMessage = "Le nom doit avoir au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom ne doit pas avoir plus de {{ limit }} caractères",
+     *      allowEmptyString = false
+     *     )
      * @ORM\Column(type="string", length=255)
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *     message = "cet email '{{ value }}' n'est pas valide"
+     * )
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+//     * @Assert\Regex("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/")
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $password;
 
     /**
+     * @Assert\Regex("/^([0-9]{2} ){4}[0-9]{2}/")
      * @ORM\Column(type="string", length=255)
      */
     private $phone;

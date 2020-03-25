@@ -5,13 +5,15 @@ namespace App\Controller;
 use App\Entity\Posts;
 use App\Form\PostsType;
 use App\Repository\PostsRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/posts")
+ * @IsGranted("ROLE_ADMIN")
+ * @Route("/adminPosts")
  */
 class AdminPostsController extends AbstractController
 {
@@ -38,6 +40,7 @@ class AdminPostsController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
+            $this->addFlash('success', "L'annonce a été créée");
 
             return $this->redirectToRoute('posts_index');
         }
@@ -68,6 +71,7 @@ class AdminPostsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', "L'annonce a été modifiée");
 
             return $this->redirectToRoute('posts_index');
         }
@@ -87,6 +91,8 @@ class AdminPostsController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($post);
             $entityManager->flush();
+            $this->addFlash('success', "L'annonce a été supprimée");
+
         }
 
         return $this->redirectToRoute('posts_index');

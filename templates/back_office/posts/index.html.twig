@@ -6,6 +6,10 @@
     <div class="container">
         <h1>Gérer les annonces</h1>
 
+        {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
         <table class="table">
             <thead>
             <tr>
@@ -24,8 +28,8 @@
                     <td>{{ post.title }}</td>
                     <td>{{ post.description }}</td>
                     <td>
-                        <a href="{{ path('posts_show', {'id': post.id}) }}">show</a>
-                        <a href="{{ path('posts_edit', {'id': post.id}) }}">edit</a>
+                        <a href="{{ path('posts_show', {'id': post.id}) }}" class="btn btn-secondary">show</a>
+                        <a href="{{ path('posts_edit', {'id': post.id}) }}" class="btn btn-warning">edit</a>
                     </td>
                 </tr>
             {% else %}
@@ -35,7 +39,8 @@
             {% endfor %}
             </tbody>
         </table>
-
-        <a href="{{ path('posts_new') }}">Créer une annonce</a>
+        <div class="text-right">
+            <a href="{{ path('posts_new') }}" class="btn btn-primary">Créer une annonce</a>
+        </div>
     </div>
 {% endblock %}
