@@ -3,14 +3,11 @@
 {% block title %}New Posts{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div>
-            <h1>Créer une annonce</h1>
-            {{ include('back_office/posts/_form.html.twig') }}
-        </div>
+    <div class="container mt-4">
+        <h1 style="margin-top: 2em">Créer une annonce</h1>
+        {{ include('back_office/posts/_form.html.twig') }}
 
-        <div>
-            <a href="{{ path('posts_index') }}">back to list</a>
-        </div>
+        <a class="btn btn-dark" href="{{ path('posts_index') }}">Retour</a>
+    </div>
     </div>
 {% endblock %}

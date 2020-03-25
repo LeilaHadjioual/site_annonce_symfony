@@ -6,7 +6,9 @@ namespace App\Controller;
 
 use App\Entity\Posts;
 use App\Repository\PostsRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -25,9 +27,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home", methods={"GET"})
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $posts = $this->postsRepository->findAll();
+        $posts = $paginator->paginate(
+            $this->postsRepository->findAll(),
+            $request->query->getInt('page', 1),
+            6);
+//        $posts = $this->postsRepository->findAll();
         return $this->render('base.html.twig', [
             'posts' => $posts
         ]);

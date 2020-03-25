@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Posts;
 use App\Form\PostsType;
 use App\Repository\PostsRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,13 +19,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminPostsController extends AbstractController
 {
     /**
+     * @var PostsRepository
+     */
+    private $postsRepository;
+
+    public function __construct(PostsRepository $postsRepository)
+    {
+        $this->postsRepository = $postsRepository;
+    }
+
+    /**
      * @Route("/", name="posts_index", methods={"GET"})
      */
-    public function index(PostsRepository $postsRepository): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
+        $posts = $paginator->paginate(
+            $this->postsRepository->findAll(),
+            $request->query->getInt('page', 1),
+            5);
+//        $posts = $this->postsRepository->findAll();
         return $this->render('back_office/posts/index.html.twig', [
-            'posts' => $postsRepository->findAll(),
+            'posts' => $posts
         ]);
+//        return $this->render('back_office/posts/index.html.twig', [
+//            'posts' => $postsRepository->findAll(),
+//        ]);
     }
 
     /**
@@ -41,10 +60,8 @@ class AdminPostsController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
             $this->addFlash('success', "L'annonce a été créée");
-
             return $this->redirectToRoute('posts_index');
         }
-
         return $this->render('back_office/posts/new.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
@@ -87,7 +104,7 @@ class AdminPostsController extends AbstractController
      */
     public function delete(Request $request, Posts $post): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($post);
             $entityManager->flush();
