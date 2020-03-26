@@ -14,7 +14,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ post.image }}</td>
+                <td>{{ post.imageFile }}</td>
             </tr>
             <tr>
                 <th>Titre</th>
@@ -23,6 +23,18 @@
             <tr>
                 <th>Description</th>
                 <td>{{ post.description }}</td>
+            </tr>
+            <tr>
+                <th>Code postal</th>
+                <td>{{ post.zipCode }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ post.city }}</td>
+            </tr>
+            <tr>
+                <th>Membre</th>
+                <td>{{ post.user.firstname }}</td>
             </tr>
             </tbody>
         </table>

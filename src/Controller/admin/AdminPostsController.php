@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 use App\Entity\Posts;
 use App\Form\PostsType;
@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @IsGranted("ROLE_ADMIN")
- * @Route("/adminPosts")
+ * @Route("/admin/posts")
  */
 class AdminPostsController extends AbstractController
 {

@@ -12,11 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Security\Core\User\User;
 
 
 /**
- * @Route("/userPost")
+ * @Route("/user/post")
  */
 class UsersPostsController extends AbstractController
 {
@@ -39,6 +39,8 @@ class UsersPostsController extends AbstractController
         $post = new Posts();
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
+//         $userId = $post->getUser();
+//        $post->setUser($userId);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();

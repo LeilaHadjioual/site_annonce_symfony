@@ -14,13 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/userAccount")
+ * @Route("/login")
  */
 class UserAccountController extends AbstractController
 {
 
     /**
-     * @Route("/newAccount", name="new_account", methods={"GET","POST"})
+     * @Route("/new", name="new_account", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {

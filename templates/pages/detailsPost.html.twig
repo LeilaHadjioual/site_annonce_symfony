@@ -4,12 +4,21 @@
 {% block body %}
     <div class="container mt-4">
         <div class="row" style="margin-top: 10em">
-            <div class="col-md-8">
-{#en attent image#}
-            </div>
+            {% if post.image %}
+                <div class="col-md-4">
+                    <img src="/images/posts/{{ post.image }}" class="card-img" alt="image"
+                         style="width: 50%; height: auto">
+                </div>
+            {% else %}
+                <div class="col-md-4">
+                    <img src="/images/posts/image_by_default.png" class="card-img" alt="image2"
+                         style="width: 50%; height: auto">
+                </div>
+            {% endif %}
             <div class="col-md-4">
                 <h1>{{ post.title }}</h1>
-                <p>Posté le {{ post.createdAt.date }}</p>
+                <p><small>Posté le {{ post.createdAt.date }}</small></p>
+                <p>{{ post.zipCode }} {{ post.city }}</p>
                 <a href="#" class="btn btn-primary">Contacter</a>
             </div>
         </div>

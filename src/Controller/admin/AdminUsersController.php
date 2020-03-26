@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 use App\Entity\Users;
 use App\Form\UsersType;
@@ -51,9 +51,6 @@ class AdminUsersController extends AbstractController
         $user->setRole($role);
         $password = $user->getPassword();
         $user->setPassword($this->encoder->encodePassword($user, $password));
-//        $em = $this->getDoctrine()->getManager();
-////        $em->persist($user);
-////        $em->flush();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
