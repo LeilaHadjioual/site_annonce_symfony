@@ -47,12 +47,12 @@ class AdminUsersController extends AbstractController
         $user = new Users();
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
-        $role = 'ROLE_USER';
-        $user->setRole($role);
-        $password = $user->getPassword();
-        $user->setPassword($this->encoder->encodePassword($user, $password));
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $role = 'ROLE_USER';
+            $user->setRole($role);
+            $password = $user->getPassword();
+            $user->setPassword($this->encoder->encodePassword($user, $password));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

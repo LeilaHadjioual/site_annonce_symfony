@@ -20,15 +20,15 @@ use Symfony\Component\Security\Core\User\User;
  */
 class UsersPostsController extends AbstractController
 {
-    /**
-     * @Route("/myposts", name="my_posts", methods={"GET"})
-     */
-    public function index(): Response
-    {
-        return $this->render('usersPosts/index.html.twig', [
-//            'posts' => $postsRepository->findAll(),
-        ]);
-    }
+//    /**
+//     * @Route("/myposts", name="my_posts", methods={"GET"})
+//     */
+//    public function index(): Response
+//    {
+//        return $this->render('usersPosts/index.html.twig', [
+////            'posts' => $postsRepository->findAll(),
+//        ]);
+//    }
 
 
     /**

@@ -55,7 +55,6 @@ class Users implements UserInterface
     private $email;
 
     /**
-//     * @Assert\Regex("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/")
      * @ORM\Column(type="string", length=255, unique=true)
      */
     private $password;
