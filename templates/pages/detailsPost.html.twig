@@ -20,14 +20,18 @@
                 <p><small>Posté le {{ post.createdAt.date }}</small></p>
                 <p>{{ post.zipCode }} {{ post.city }}</p>
                 <a href="#" id="contactBtn" class="btn btnShow">Voir contact</a>
-                <p id="userEmail">{{ post.user.email }}</p>
+                {% if is_granted('ROLE_USER') %}
+                    <p id="userEmail">{{ post.user.email }}</p>
+                {% else %}
+                    <p id="userEmail">Vous devez vous connecter pour accèder au contact</p>
+                {% endif %}
             </div>
 
         </div>
         <hr style="margin-top: 3em">
         <div style="margin-bottom: 5em">
-        <p style="margin-top: 3em">PLUS DE DETAILS </p>
-        <p>{{ post.description }}</p>
+            <p style="margin-top: 3em">PLUS DE DETAILS </p>
+            <p>{{ post.description }}</p>
         </div>
 
     </div>
@@ -35,13 +39,13 @@
 
 
 {% block javascripts %}
-<script>
-    $(document).ready(function () {
-        $('#contactBtn').click(e => {
-            e.preventDefault();
-            $('#userEmail').slideDown();
+    <script>
+        $(document).ready(function () {
+            $('#contactBtn').click(e => {
+                e.preventDefault();
+                $('#userEmail').slideDown();
 
-        });
-    })
-</script>
+            });
+        })
+    </script>
 {% endblock %}

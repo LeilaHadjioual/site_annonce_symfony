@@ -3,11 +3,9 @@
 {% block title %}Devenir Membre {% endblock %}
 
 {% block body %}
-    <div class="container mt-4 formContrainer">
-        <h1 class="h1Style">Créer un compte</h1>
-    </div>
-
+    <div class="container mt-4" style="width: 30em">
+        <h1 class="h1Style">Devenir Membre</h1>
     {{ include('back_office/users/_form.html.twig') }}
-
+    </div>
 {#    <a href="{{ path('users_index') }}">back to list</a>#}
 {% endblock %}

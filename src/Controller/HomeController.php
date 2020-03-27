@@ -34,7 +34,7 @@ class HomeController extends AbstractController
             $request->query->getInt('page', 1),
             5);
 //        $posts = $this->postsRepository->findAll();
-        return $this->render('base.html.twig', [
+        return $this->render('pages/allPosts.html.twig', [
             'posts' => $posts
         ]);
     }
