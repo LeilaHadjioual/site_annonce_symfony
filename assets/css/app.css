@@ -98,7 +98,7 @@ body {
 /*end searchbar*/
 
 /**************cards**************/
-.card {
+.postCard {
     max-width: 40em;
     max-height: 15em;
     margin-bottom: 3em;
