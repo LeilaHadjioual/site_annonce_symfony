@@ -5,6 +5,8 @@
 {% block body %}
     <div class="container mt-4">
         <h1 style="margin-top: 2em">Mon compte</h1>
+        {#        {{ include('back_office/posts/_form.html.twig', {'button_label': 'Modifier'}) }}#}
+
         {{ form_start(form) }}
         {#    {{ form_widget(form) }}#}
         {{ form_row(form.firstname) }}
@@ -14,9 +16,7 @@
         <p hidden> {{ form_row(form.password) }}</p>
         <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
         {{ form_end(form) }}
-{#        {{ form_end(form, {'render_rest': false}) }}#}
-
-
+        {#        {{ form_end(form, {'render_rest': false}) }}#}
         <a class="btn btn-dark" href="{{ path('my_account', {id: user.id}) }}">Retour</a>
     </div>
 {% endblock %}

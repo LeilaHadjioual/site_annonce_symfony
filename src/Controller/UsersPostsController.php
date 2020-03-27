@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\User\User;
 
 
 /**
- * @Route("/user/post")
+ * @Route("/user/my_post")
  */
 class UsersPostsController extends AbstractController
 {
@@ -51,6 +51,28 @@ class UsersPostsController extends AbstractController
         }
 
         return $this->render('usersPosts/createPost.html.twig', [
+            'post' => $post,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/{id}/edit", name="editttt_post", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Posts $post): Response
+    {
+        $form = $this->createForm(PostsType::class, $post);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', "L'annonce a été modifiée");
+
+            return $this->redirectToRoute('my_posts');
+        }
+
+        return $this->render('usersPosts/editPost.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
         ]);
