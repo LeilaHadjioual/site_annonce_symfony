@@ -4,12 +4,12 @@
 
 {% block body %}
     <div class="container mt-4">
-        <a class="btn btnEdit" href="{{ path('account_edit',{id: user.id}) }}">Modifier</a>
         <h1 class="h1Style">Mon compte</h1>
 {#{{ user.firstname }}#}
         <span>{{ user.firstname }}</span>
         <span>{{ user.lastname }}</span>
         <span>{{ user.email }}</span>
         <span>{{ user.phone }}</span>
+        <a class="btn btnEdit" href="{{ path('account_edit',{id: user.id}) }}">Modifier</a>
     </div>
 {% endblock %}
