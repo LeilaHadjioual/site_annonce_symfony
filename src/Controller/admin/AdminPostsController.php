@@ -37,10 +37,10 @@ class AdminPostsController extends AbstractController
             $this->postsRepository->findAll(),
             $request->query->getInt('page', 1),
             5);
-//        $posts = $this->postsRepository->findAll();
         return $this->render('back_office/posts/index.html.twig', [
             'posts' => $posts
         ]);
+//        $posts = $this->postsRepository->findAll();
 //        return $this->render('back_office/posts/index.html.twig', [
 //            'posts' => $postsRepository->findAll(),
 //        ]);

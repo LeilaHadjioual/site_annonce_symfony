@@ -3,13 +3,12 @@
 {% block title %}Editer une annonce{% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
-        <h1 style="margin-top: 2em">Editer une annonce</h1>
-        {{ include('back_office/posts/_form.html.twig', {'button_label': 'Modifier'}) }}
-
+    <div class="container mt-4 formContrainer">
         <div>
-            <a class="btn btn-dark" href="{{ path('my_posts') }}">Retour</a>
+            <a class="btn btnBack" href="{{ path('my_posts') }}">Retour</a>
         </div>
+        <h1 class="h1Style">Editer une annonce</h1>
+        {{ include('back_office/posts/_form.html.twig', {'button_label': 'Modifier'}) }}
 {#        <div>#}
 {#            {{ include('back_office/posts/_delete_form.html.twig') }}#}
 {#        </div>#}

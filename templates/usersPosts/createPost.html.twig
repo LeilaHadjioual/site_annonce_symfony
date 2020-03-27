@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Créer une annonce {% endblock %}
+
 {% block body %}
-    <div class="container mt-4">
-    <h1 style="margin-top: 2em">Créer un post</h1>
+    <div class="container mt-4 formContrainer">
+    <h1 class="h1Style">Poster une annonce</h1>
     {{ include('back_office/posts/_form.html.twig') }}
     </div>
 {#    {{ form_start(form) }}#}

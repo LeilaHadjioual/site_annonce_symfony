@@ -5,6 +5,7 @@ namespace App\Controller\admin;
 use App\Entity\Users;
 use App\Form\UsersType;
 use App\Repository\UsersRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,18 +25,24 @@ class AdminUsersController extends AbstractController
      */
     private $encoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
+    public function __construct(UserPasswordEncoderInterface $encoder, UsersRepository $usersRepository)
     {
         $this->encoder = $encoder;
+        $this->usersRepository =$usersRepository;
+
     }
 
     /**
      * @Route("/", name="users_index", methods={"GET"})
      */
-    public function index(UsersRepository $usersRepository): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
+        $users = $paginator->paginate(
+            $this->usersRepository->findAll(),
+            $request->query->getInt('page', 1),
+            5);
         return $this->render('back_office/users/index.html.twig', [
-            'users' => $usersRepository->findAll(),
+            'users' => $users
         ]);
     }
 

@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}posts{% endblock %}
+{% block title %}Annonces{% endblock %}
 
 {% block body %}
     <div class="container mt-4">
-        <h1 style="margin-top: 2em">Détails des annonces</h1>
+        <a class="btn btnBack" style="margin-left: 0px;margin-bottom: -2em !important" href="{{ path('posts_index') }}">Retour</a>
+
+        <h1 class="h1Style">Détails des annonces</h1>
 
         <table class="table">
             <tbody>
@@ -38,11 +40,9 @@
             </tr>
             </tbody>
         </table>
-
-        <a class="btn btn-dark" href="{{ path('posts_index') }}">Retour</a>
-
-        <a class="btn btn-warning" href="{{ path('posts_edit', {'id': post.id}) }}">Editer</a>
-
+        <div class="text-right">
+        <a class="btn btnEdit" href="{{ path('posts_edit', {'id': post.id}) }}">Editer</a>
+        </div>
         {{ include('back_office/posts/_delete_form.html.twig') }}
     </div>
 {% endblock %}

@@ -32,7 +32,7 @@ class HomeController extends AbstractController
         $posts = $paginator->paginate(
             $this->postsRepository->findAll(),
             $request->query->getInt('page', 1),
-            6);
+            5);
 //        $posts = $this->postsRepository->findAll();
         return $this->render('base.html.twig', [
             'posts' => $posts

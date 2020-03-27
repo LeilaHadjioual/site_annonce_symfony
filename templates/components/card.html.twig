@@ -1,22 +1,21 @@
-<div class="card mb-3" style="max-width: 500px;">
-    <div class="row no-gutters">
+<div class="card">
+    <div class="row no-gutters cardHeight">
         {% if post.image %}
-            <div class="col-md-4">
-                <img src="/images/posts/{{ post.image }}" class="card-img" alt="image"
-                     style="width: 100%; height: auto">
+            <div class="col-md-5 imgAlign">
+                <img src="/images/posts/{{ post.image }}" class="card-img mx-auto d-block cardImg " alt="image">
             </div>
         {% else %}
-            <div class="col-md-4">
-                <img src="/images/posts/image_by_default.png" class="card-img" alt="image2"
-                     style="width: 100%; height: auto">
+            <div class="col-md-5">
+                <img src="/images/posts/image_by_default.png" class="card-img mx-auto d-block cardImg" alt="image2">
             </div>
         {% endif %}
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card-body">
                 <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text">{{ post.description }}</p>
+                <p class="card-text maxLines">{{ post.description }}</p>
                 <p class="card-text"><small class="text-muted">{{ post.zipCode }} {{ post.city }}</small></p>
-                <a href="{{ path('get_post', {id: post.id}) }}" class="btn btn-primary">voir</a>
+                <p class="card-text" style="margin-top: -1em"><small class="text-muted">Dernière mise à jour le {{ post.updatedAt.date }}</small></p>
+               <div> <a href="{{ path('get_post', {id: post.id}) }}" class="btn btnShow">En savoir plus</a></div>
             </div>
         </div>
     </div>

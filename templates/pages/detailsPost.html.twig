@@ -2,28 +2,46 @@
 {% block title post.title %}
 
 {% block body %}
-    <div class="container mt-4">
+    <div class="container mt-4" style="width: 50em">
         <div class="row" style="margin-top: 10em">
             {% if post.image %}
                 <div class="col-md-4">
                     <img src="/images/posts/{{ post.image }}" class="card-img" alt="image"
-                         style="width: 50%; height: auto">
+                         style="width: 100%; height: auto">
                 </div>
             {% else %}
                 <div class="col-md-4">
                     <img src="/images/posts/image_by_default.png" class="card-img" alt="image2"
-                         style="width: 50%; height: auto">
+                         style="width: 80%; height: auto">
                 </div>
             {% endif %}
-            <div class="col-md-4">
-                <h1>{{ post.title }}</h1>
+            <div class="col-md-8" style="padding-left: 2em;">
+                <h2>{{ post.title }}</h2>
                 <p><small>Posté le {{ post.createdAt.date }}</small></p>
                 <p>{{ post.zipCode }} {{ post.city }}</p>
-                <a href="#" class="btn btn-primary">Contacter</a>
+                <a href="#" id="contactBtn" class="btn btnShow">Voir contact</a>
+                <p id="userEmail">{{ post.user.email }}</p>
             </div>
+
         </div>
-        <p>DESCRIPTION </p>
+        <hr style="margin-top: 3em">
+        <div style="margin-bottom: 5em">
+        <p style="margin-top: 3em">PLUS DE DETAILS </p>
         <p>{{ post.description }}</p>
+        </div>
 
     </div>
+{% endblock %}
+
+
+{% block javascripts %}
+<script>
+    $(document).ready(function () {
+        $('#contactBtn').click(e => {
+            e.preventDefault();
+            $('#userEmail').slideDown();
+
+        });
+    })
+</script>
 {% endblock %}

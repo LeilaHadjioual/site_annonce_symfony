@@ -1,14 +1,20 @@
+{#{% extends 'base.html.twig' %}#}
 
 {% block body %}
     <div class="mt-4">
-        <div class="jumbotron" style="text-align: center; margin-top: 3em">
-            <h1>Bienvenue sur votre site gratuit d'annonce et d'entraide en ligne</h1>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+        <div class="homePres">
+            <h1 class="homeTxt">Bienvenue sur votre site gratuit d'annonce et d'entraide en ligne</h1>
+            <div class="container h-100">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Rechercher...">
+                        <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="container" style="margin: auto">
+        <div class="container" id="containerAllPost">
             <div class="column flex">
                 {% for post in posts %}
                     {% include 'components/card.html.twig' %}

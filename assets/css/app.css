@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Chettan+2|Comic+Neue|Nunito|Ubuntu&display=swap');
+
+body {
+    background: linear-gradient(-45deg, #ac3b61, #edc7b7, #eee2dc, #bab2b5);
+    font-family: 'Baloo Chettan 2', cursive, 'Nunito', sans-serif;
+
+
+}
+
+/**********home page************/
+.navbar {
+    background-color: #123C69;
+    color: white;
+    box-shadow: 0px 5px 10px #999;
+}
+
+.dropdown-menu{
+    margin-left: -4.5em;
+}
+
+.homePres {
+    /*background-color:#EDC7B7 ;*/
+    text-align: center;
+    margin-top: 6em;
+}
+
+.homeTxt {
+    margin-right: 5em;
+    margin-left: 5em;
+    color: #ac3b61;
+}
+
+#containerAllPost {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 5em;
+}
+
+/*end home page*/
+
+/**********all title pages**********/
+.h1Style {
+    color: #123C69;
+    margin-top: 2em;
+}
+
+/*end all title*/
+
+/***********searchbar*************/
+.searchbar {
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    background-color: #123C69;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.search_input {
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color: transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_input {
+    padding: 0 10px;
+    width: 450px;
+    caret-color: #ac3b61;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_icon {
+    background: white;
+    color: #ac3b61;
+}
+
+.search_icon {
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+}
+
+/*end searchbar*/
+
+/**************cards**************/
+.card {
+    max-width: 40em;
+    max-height: 15em;
+    margin-bottom: 3em;
+    box-shadow: 10px 8px 20px #999;
+}
+
+.cardHeight{
+    height:15em;
+}
+.imgAlign{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+    height: 15em;
+}
+.cardImg {
+    width: 80%;
+}
+
+.maxLines {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+/************end card***********/
+
+/***********pagination**********/
+.pagination {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.page-item.active .page-link {
+    background-color: #123C69;
+    border-color: #123C69;
+}
+
+.page-link {
+    color: #123C69;
+    /*background-color: #edc7b7;*/
+}
+
+/*end pagination*/
+
+/***********all buttons***********/
+.btnSave {
+    background-color: #123C69;
+    color: white;
+    margin-top: 1em;
+}
+
+.btnEdit {
+    background-color: #123C69;
+    color: white;
+}
+
+.btnShow {
+    background-color: #bab2b5;
+    color: white;
+}
+
+.btnCreate {
+    background-color: #ac3b61;
+    color: white;
+}
+
+.btnBack {
+    background-color: #ac3b61;
+    color: white;
+    margin-top: 3em;
+    margin-left: -25em;
+    margin-bottom: -5em;
+}
+
+.btnDelete {
+    background-color: #11172A;
+    color: white;
+}
+
+/*end all buttons*/
+
+/************formulaires***********/
+.formContrainer{
+    width: 30em;
+}
+/********end form*******/
+
+#userEmail{
+    display: none;
+    margin-top: 1em;
+    color:#ac3b61;
+    font-size: 20px;
+}
+
+
+/*********footer*********/
+footer{
+    background-color: #123C69;
+    margin-top: 32px;
+    height: 3em;
+    color:white;
+    text-align:center;
+    padding-top: 1em;
+    box-shadow: 0px 0px 10px #000;
+    position:absolute;
+    width: 100%;
+    bottom: 0;
+}

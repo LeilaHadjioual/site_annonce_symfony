@@ -3,20 +3,19 @@
 {% block title %}Mon compte {% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
-        <h1 style="margin-top: 2em">Mon compte</h1>
+    <div class="container mt-4 formContrainer">
+        <a class="btn btnBack" href="{{ path('my_account', {id: user.id}) }}">Retour</a>
+        <h1 class="h1Style">Mon compte</h1>
         {#        {{ include('back_office/posts/_form.html.twig', {'button_label': 'Modifier'}) }}#}
-
         {{ form_start(form) }}
         {#    {{ form_widget(form) }}#}
         {{ form_row(form.firstname) }}
         {{ form_row(form.lastname) }}
         {{ form_row(form.email) }}
         {{ form_row(form.phone) }}
-        <p hidden> {{ form_row(form.password) }}</p>
-        <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+        {{ form_row(form.password) }}
+        <button class="btn btnSave">{{ button_label|default('Enregistrer') }}</button>
         {{ form_end(form) }}
         {#        {{ form_end(form, {'render_rest': false}) }}#}
-        <a class="btn btn-dark" href="{{ path('my_account', {id: user.id}) }}">Retour</a>
     </div>
 {% endblock %}

@@ -25,10 +25,7 @@ class Posts
     /**
      * @var String|null
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Image(
-     *     mimeTypes = {"image/jpeg", "image/png","image/jpg", "image/gif"},
-     *     mimeTypesMessage = "Only .jpeg .png .jpg and .gif Extension valide"
-     * )
+     *
      */
     private $image;
 
@@ -36,10 +33,7 @@ class Posts
     /**
      * @var File|null
      * @Vich\UploadableField(mapping="posts_image", fileNameProperty="image")
-     * @Assert\Image(
-     *     mimeTypes = {"image/jpeg", "image/png","image/jpg", "image/gif"},
-     *     mimeTypesMessage = "Only .jpeg .png .jpg and .gif Extension valide"
-     * )
+     *
      */
     private $ImageFile;
 
