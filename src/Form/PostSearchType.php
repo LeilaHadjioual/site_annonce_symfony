@@ -41,3 +41,4 @@ class PostSearchType extends AbstractType
         return '';
     }
 }
+

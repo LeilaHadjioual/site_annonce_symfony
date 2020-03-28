@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\UsersType;
 use App\Repository\UsersRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
-/**
- * @IsGranted("ROLE_USER")
- * @Route("/user")
- */
 class UserAccountController extends AbstractController
 {
     /**
@@ -33,7 +28,7 @@ class UserAccountController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="my_account", methods={"GET"})
+     * @Route("/user/{id}", name="my_account", methods={"GET"})
      */
     public function show(Users $user): Response
     {
@@ -41,7 +36,35 @@ class UserAccountController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="account_edit", methods={"GET","POST"})
+     * @Route("/login/new", name="new_account", methods={"GET","POST"})
+     */
+    public function new(Request $request): Response
+    {
+        $user = new Users();
+        $form = $this->createForm(UsersType::class, $user);
+        $form->handleRequest($request);;
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $role = 'ROLE_USER';
+            $user->setRole($role);
+            $password = $user->getPassword();
+            $user->setPassword($this->encoder->encodePassword($user, $password));
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('userAccount/createAccount.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/user/{id}/edit", name="account_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Users $user): Response
     {

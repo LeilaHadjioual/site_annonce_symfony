@@ -55,18 +55,20 @@ class PostsRepository extends ServiceEntityRepository
      */
     public function findPostBySearch(PostSearch $search){
         $qb = $this->createQueryBuilder('p');
-            $qb->where(
-                $qb->expr()->andX(
-                    $qb->expr()->orX(
-                        $qb->expr()->like('p.title', ':query'),
-                        $qb->expr()->like('p.description', ':query'),
-                        $qb->expr()->like('p.city', ':query')
-                    )
+        $qb->where(
+            $qb->expr()->andX(
+                $qb->expr()->orX(
+                    $qb->expr()->like('p.title', ':query'),
+                    $qb->expr()->like('p.description', ':query'),
+                    $qb->expr()->like('p.city', ':query')
                 )
-            )->setParameter('query', '%' . $search->getInputSearch() . '%');
+            )
+        )->setParameter('query', '%' . $search->getInputSearch() . '%');
         return $qb
             ->orderBy('p.updated_at', 'DESC')
             ->getQuery()
             ->getResult();
     }
 }
+
+
