@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Posts;
+use App\Entity\PostSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -49,19 +50,20 @@ class PostsRepository extends ServiceEntityRepository
     */
 
     /**
-     * @param string $query
+     * @param PostSearch $search
      * @return mixed
      */
-    public function findByName(string $query){
+    public function findPostBySearch(PostSearch $search){
         $qb = $this->createQueryBuilder('p');
             $qb->where(
                 $qb->expr()->andX(
                     $qb->expr()->orX(
                         $qb->expr()->like('p.title', ':query'),
-                        $qb->expr()->like('p.description', ':query')
+                        $qb->expr()->like('p.description', ':query'),
+                        $qb->expr()->like('p.city', ':query')
                     )
                 )
-            )->setParameter('query', '%' . $query . '%');
+            )->setParameter('query', '%' . $search->getInputSearch() . '%');
         return $qb
             ->orderBy('p.updated_at', 'DESC')
             ->getQuery()

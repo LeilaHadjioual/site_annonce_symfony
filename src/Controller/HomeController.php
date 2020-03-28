@@ -5,6 +5,8 @@ namespace App\Controller;
 
 
 use App\Entity\Posts;
+use App\Entity\PostSearch;
+use App\Form\PostSearchType;
 use App\Repository\PostsRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,52 +28,39 @@ class HomeController extends AbstractController
         $this->postsRepository = $postsRepository;
     }
 
-//    /**
-//     * @Route("/", name="home", methods={"GET"})
-//     */
-//    public function index(PaginatorInterface $paginator, Request $request): Response
-//    {
-//        $posts = $paginator->paginate(
-//            $this->postsRepository->findAll(),
-//            $request->query->getInt('page', 1),
-//            5);
-////        $posts = $this->postsRepository->findAll();
-//        return $this->render('base.html.twig', [
-//            'posts' => $posts
-//        ]);
-//    }
-
-
     /**
-     * @Route("/", name="home", methods={"GET", "POST"})
+     * @Route("/", name="home", methods={"GET"})
      */
-    public function handleSearch(Request $request, PaginatorInterface $paginator)
+    public function index(Request $request, PaginatorInterface $paginator)
     {
-        $form = $this->createFormBuilder()
-            ->setAction($this->generateUrl('home'))
-            ->add('query', TextType::class)
-            ->add('rechercher', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-primary search-icon'
-                ]
-            ])
-            ->getForm();
-        $query = $request->request->get('form')['query'];
-        if (!$query) {
-            $postsByquery = $this->postsRepository->findAll();
+//        $form = $this->createFormBuilder()
+//            ->setAction($this->generateUrl('home'))
+//            ->add('query', TextType::class)
+//            ->add('rechercher', SubmitType::class, [
+//                'attr' => [
+//                    'class' => 'btn btn-primary'
+//                ]
+//            ])
+//            ->getForm();
+//        $query = $request->request->get('form')['query'];
+//        if (!$query) {
+//            $postsByquery = $this->postsRepository->findAll();
+//
+//        } else {
+//            $postsByquery = $this->postsRepository->findByName($query);
+//        }
 
-        } else {
-            $postsByquery = $this->postsRepository->findByName($query);
-        }
+        $search = new PostSearch();
+        $form = $this->createForm(PostSearchType::class, $search);
+        $form->handleRequest($request);
+
         $posts = $paginator->paginate(
-            $postsByquery,
+            $this->postsRepository->findPostBySearch($search),
             $request->query->getInt('page', 1),
             5);
         return $this->render('base.html.twig', [
             'posts' => $posts,
             'form' => $form->createView()]);
-
-
     }
 
     /**
