@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <h5 class="card-title"></h5>
                     <p class="card-text">{{post.description}}</p>
-                    <a href="{{ path('editttt_post', {id:post.id}) }}" class="btn btnEdit">Modifier</a>
+                    <a href="{{ path('edit_post', {id: post.id}) }}" class="btn btnEdit">Modifier</a>
                 </div>
                 <div class="card-footer text-muted">
                     posté le {{ post.createdAt.date }}

@@ -2,6 +2,8 @@
 
 body {
     background: linear-gradient(-45deg, #ac3b61, #edc7b7, #eee2dc, #bab2b5);
+    /*background-repeat: no-repeat;*/
+    /*background-size: 400%;*/
     font-family: 'Baloo Chettan 2', cursive, 'Nunito', sans-serif;
 
 
