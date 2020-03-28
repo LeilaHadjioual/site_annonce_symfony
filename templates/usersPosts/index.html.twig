@@ -22,7 +22,7 @@
                     <a href="{{ path('edit_post', {id: post.id}) }}" class="btn btnEdit">Modifier</a>
                 </div>
                 <div class="card-footer text-muted">
-                    posté le {{ post.createdAt.date }}
+                    posté le {{ post.createdAt.date | date("d/m/Y H:i", "Europe/Paris")}}
                 </div>
             </div>
         {% endfor %}

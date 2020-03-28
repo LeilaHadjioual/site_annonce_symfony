@@ -5,11 +5,11 @@
 {% block body %}
     <div class="container mt-4 formContrainer">
         {% if error %}
-            <div class="alert alert-danger" style="margin-top: 2em">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger" style="margin-top: 4em">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
         {% if app.user %}
-            <div class="mb-3" style="margin-top: 2em">
+            <div class="mb-3 formContrainer" style="margin-top: 4em">
                 You are logged in as {{ app.user.fistname }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div>
         {% endif %}

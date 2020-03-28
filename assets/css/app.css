@@ -224,6 +224,22 @@ body {
 }
 
 
+/***************account********/
+.profile{
+    text-align: center;
+    background-color: floralwhite;
+    height: 25em;
+    margin-top: 3em;
+}
+
+.profileMarg{
+    padding-top: 2em;
+}
+.profileImg{
+    width: 40%;
+}
+
+
 /*********footer*********/
 footer{
     background-color: #123C69;

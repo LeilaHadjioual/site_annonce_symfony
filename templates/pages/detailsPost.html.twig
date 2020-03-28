@@ -17,7 +17,7 @@
             {% endif %}
             <div class="col-md-8" style="padding-left: 2em;">
                 <h2>{{ post.title }}</h2>
-                <p><small>Posté le {{ post.createdAt.date }}</small></p>
+                <p><small>Posté le {{ post.createdAt.date|date("d/m/Y H:i", "Europe/Paris")}}</small></p>
                 <p>{{ post.zipCode }} {{ post.city }}</p>
                 <a href="#" id="contactBtn" class="btn btnShow">Voir contact</a>
                 {% if is_granted('ROLE_USER') %}

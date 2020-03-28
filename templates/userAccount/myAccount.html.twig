@@ -3,13 +3,32 @@
 {% block title %}Mon compte {% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
+    <div class="container mt-4 formContrainer">
         <h1 class="h1Style">Mon compte</h1>
-{#{{ user.firstname }}#}
-        <span>{{ user.firstname }}</span>
-        <span>{{ user.lastname }}</span>
-        <span>{{ user.email }}</span>
-        <span>{{ user.phone }}</span>
-        <a class="btn btnEdit" href="{{ path('account_edit',{id: user.id}) }}">Modifier</a>
+        <div class="profile">
+            <div class="profileMarg">
+                <img class="profileImg" src="/images/site/userAccount.png" alt="image2"/>
+            </div>
+            <div class="row" style="padding-top: 2em">
+                <div class="col">
+                    <span>{{ user.firstname }}</span>
+                </div>
+                <div class="col">
+                    <span>{{ user.lastname }}</span>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 2em">
+                <div class="col">
+                    <span>{{ user.email }}</span>
+                </div>
+                <div class="col">
+                    <span>{{ user.phone }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-right" style="margin-top: 2em">
+            <a class="btn btnEdit" href="{{ path('account_edit',{id: user.id}) }}">Modifier</a>
+        </div>
     </div>
 {% endblock %}
