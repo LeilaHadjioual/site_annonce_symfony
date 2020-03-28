@@ -15,16 +15,15 @@ class PostSearchType extends AbstractType
     {
         $builder
             ->add('inputSearch', TextType::class, [
+                'required'=>false,
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Rechercher'
                 ]
-            ])
-            ->add('rechercher', SubmitType::class, [
-//                'attr' => [
-//                    'class' => 'btn btn-primary search-icon'
-//                ]
             ]);
+//            ->add('submit', SubmitType::class, [
+//                 'label' => 'Rechercher',
+//            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

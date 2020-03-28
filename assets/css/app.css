@@ -55,14 +55,14 @@ body {
 /***********searchbar*************/
 .searchbar {
     margin-bottom: auto;
-    margin-top: auto;
+    margin-top: 2em;
     height: 60px;
     background-color: #123C69;
     border-radius: 30px;
     padding: 10px;
 }
 
-.search_input {
+#inputSearch {
     color: white;
     border: 0;
     outline: 0;
@@ -73,16 +73,16 @@ body {
     transition: width 0.4s linear;
 }
 
-.searchbar:hover > .search_input {
+.searchbar .form-group:hover > #inputSearch {
     padding: 0 10px;
     width: 450px;
     caret-color: #ac3b61;
     transition: width 0.4s linear;
 }
 
-.searchbar:hover > .search_icon {
-    background: white;
-    color: #ac3b61;
+.searchbar .form-group:hover > .search_icon {
+    background: white !important;
+    color: #ac3b61 !important;
 }
 
 .search_icon {
@@ -92,14 +92,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
     color: white;
     text-decoration: none;
+    border: none;
+    background: transparent;
+    margin-top: -3.4em;
 }
 
 /*end searchbar*/
 
-/**************cards**************/
+/**************cards homepage**************/
 .postCard {
     max-width: 40em;
     max-height: 15em;
@@ -132,6 +134,22 @@ body {
 }
 
 /************end card***********/
+
+
+/**********card my post*********/
+
+.cardPost{
+    max-width: 70em;
+    margin:2em;
+}
+.descCard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+}
 
 /***********pagination**********/
 .pagination {
