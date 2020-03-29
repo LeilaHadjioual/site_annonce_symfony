@@ -5,7 +5,8 @@
 {% block body %}
     <div class="container mt-4 formContrainer">
         {% if error %}
-            <div class="alert alert-danger" style="margin-top: 4em">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger"
+                 style="margin-top: 4em">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
         {% if app.user %}
@@ -14,8 +15,8 @@
             </div>
         {% endif %}
 
-        <form method="post">
-            <h1 class="h3 mb-3 font-weight-normal">Formulaire de connexion</h1>
+        <form method="post" style="margin-top: 8em; padding-bottom: 12em">
+            <h1 class="h3 mt-4 mb-3 h1Style">Formulaire de connexion</h1>
             <label class="mt-4" for="inputEmail">E-mail</label>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required>
             <label class="mt-4" for="inputPassword">Mot de passe</label>
@@ -34,11 +35,11 @@
                     </label>
                 </div>
             #}
-
-            <button class="btn btnSave align-right mt-4" type="submit">
-                Se connecter
-            </button>
-
+            <div class="text-right mt-4">
+                <button class="btn btnSave " type="submit">
+                    Se connecter
+                </button>
+            </div>
         </form>
     </div>
 {% endblock %}

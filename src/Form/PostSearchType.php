@@ -18,11 +18,11 @@ class PostSearchType extends AbstractType
                 'required'=>false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Rechercher'
+                    'placeholder' => 'Rechercher...'
                 ]
             ]);
 //            ->add('submit', SubmitType::class, [
-//                 'label' => 'Rechercher',
+//                 'label' => 'Search',
 //            ]);
     }
 

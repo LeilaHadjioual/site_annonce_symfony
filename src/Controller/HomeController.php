@@ -36,7 +36,7 @@ class HomeController extends AbstractController
 //        $form = $this->createFormBuilder()
 //            ->setAction($this->generateUrl('home'))
 //            ->add('query', TextType::class)
-//            ->add('rechercher', SubmitType::class, [
+//            ->add('Search', SubmitType::class, [
 //                'attr' => [
 //                    'class' => 'btn btn-primary'
 //                ]

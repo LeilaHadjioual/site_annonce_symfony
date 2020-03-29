@@ -13,7 +13,8 @@
         {{ form_row(form.lastname) }}
         {{ form_row(form.email) }}
         {{ form_row(form.phone) }}
-        {{ form_row(form.password) }}
+        {{ form_widget(form.password, { 'attr': {'style': 'display:none'} }) }}
+{#        {{ form_row(form.password) }}#}
         <button class="btn btnSave">{{ button_label|default('Enregistrer') }}</button>
         {{ form_end(form) }}
         {#        {{ form_end(form, {'render_rest': false}) }}#}

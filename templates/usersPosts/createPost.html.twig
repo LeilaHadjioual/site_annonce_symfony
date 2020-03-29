@@ -7,12 +7,16 @@
     <h1 class="h1Style">Poster une annonce</h1>
     {{ include('back_office/posts/_form.html.twig') }}
     </div>
-{#    {{ form_start(form) }}#}
-
-{#    {{ form_row(form.title) }}#}
-{#    {{ form_row(form.description) }}#}
-{#    {{ form_row(form.image) }}#}
-
-{#    <button class="btn">{{ button_label|default('Save') }}</button>#}
-{#    {{ form_end(form) }}#}
 {% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('.custom-file-input').on('change', function(event) {
+            var inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        });
+    </script>
+{% endblock %}
+

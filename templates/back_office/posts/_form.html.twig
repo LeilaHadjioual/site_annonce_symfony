@@ -2,13 +2,17 @@
 {#    {{ form_widget(form) }}#}
     {{ form_row(form.title) }}
     {{ form_row(form.description) }}
+{% if post.image %}
+    <p> Image actuelle : <img src="/images/posts/{{ post.image }}" alt="image" style="width: 10%"> </p>
+{% endif %}
     {{ form_row(form.imageFile) }}
     {{ form_row(form.zipCode) }}
     {{ form_row(form.city) }}
-   {% if is_granted('ROLE_ADMIN') %}
-       {{ form_row(form.user) }}
-   {% endif %}
+    {{ form_row(form.user) }}
+
 <div class="text-right">
-<button class="btn btnSave">{{ button_label|default('Enregistrer') }}</button>
+    <button class="btn btnSave">{{ button_label|default('Enregistrer') }}</button>
 </div>
 {{ form_end(form) }}
+
+

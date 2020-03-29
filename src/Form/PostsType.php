@@ -16,7 +16,12 @@ class PostsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('imageFile', FileType::class, ['required'=>false])
+            ->add('imageFile', FileType::class, [
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Select file'
+                ]
+            ])
             ->add('title')
             ->add('description')
             ->add('zipCode')
@@ -24,11 +29,12 @@ class PostsType extends AbstractType
             ->add('user', EntityType::class, [
                 'class' => Users::class,
                 'choice_label' => 'firstname',
-                'query_builder' => function(UsersRepository $usersRepository){
-                    return $usersRepository->createQueryBuilder('u');
+                'query_builder' => function (UsersRepository $usersRepository) {
+                    return $usersRepository->createQueryBuilder('u')
+                        ->andWhere('u.firstname = :val')
+                        ->setParameter('val', 'leila');
                 }
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
