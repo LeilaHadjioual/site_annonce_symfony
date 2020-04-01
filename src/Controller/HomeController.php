@@ -59,7 +59,7 @@ class HomeController extends AbstractController
             $request->query->getInt('page', 1),
             5);
 
-        return $this->render('pages/allPosts.html.twig', [
+        return $this->render('pages/homePage.html.twig', [
             'posts' => $posts,
             'form' => $form->createView()]);
 

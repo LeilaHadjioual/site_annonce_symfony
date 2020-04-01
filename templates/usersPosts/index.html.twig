@@ -5,30 +5,49 @@
 {% block body %}
     <div class="container mt-4">
         <h1 class="h1Style">Mes annonces</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
         {% for post in posts %}
-                <div class="card text-center cardPost">
-                    <div class="card-header">
-                        {{ post.title }}
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <div class="card-text descCard">
-                            {% if post.image %}
-                                <img src="/images/posts/{{ post.image }}" alt="image" style="width: 10%">
-                            {% endif %}
-                            <p style="margin-left: 2em;}">{{ post.description }}
-                            </p>
-                        </div>
-                        <a href="{{ path('edit_post', {id: post.id}) }}" class="btn btnEdit">Modifier</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                       <p> Posté le {{ post.createdAt.date | date("d/m/Y H:i", "Europe/Paris") }}   ----
-                        Mis à jour le {{ post.updatedAt.date | date("d/m/Y H:i", "Europe/Paris") }}</p>
-                    </div>
+            <div class="card text-center cardPost">
+                <div class="card-header">
+                    {{ post.title }}
                 </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <div class="card-text descCard">
+                        {% if post.image %}
+                            <img src="/images/posts/{{ post.image }}" alt="image" style="width: 10%">
+                        {% endif %}
+                        <p style="margin-left: 2em;}">{{ post.description }}
+                        </p>
+                    </div>
+                    <a href="{{ path('edit_post', {id: post.id}) }}" class="btn btnEdit"
+                       style="margin-top:2em">Modifier</a>
+                </div>
+                <div class="card-footer text-muted">
+                    <span> Publié le {{ post.createdAt.date | date("d/m/Y H:i", "Europe/Paris") }}</span>
+                </div>
+            </div>
+        {% else %}
+            <p>Vous n'avez pas publié d'annonce</p>
         {% endfor %}
     </div>
 
 {% endblock %}
+
+
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('.alert-success').fadeOut()
+            }, 3000);
+        });
+    </script>
+{% endblock %}
+
+
 
 

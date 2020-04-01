@@ -37,11 +37,11 @@ class AdminPostsController extends AbstractController
             $this->postsRepository->findAll(),
             $request->query->getInt('page', 1),
             5);
-        return $this->render('back_office/posts/index.html.twig', [
+        return $this->render('admin/posts/index.html.twig', [
             'posts' => $posts
         ]);
 //        $posts = $this->postsRepository->findAll();
-//        return $this->render('back_office/posts/index.html.twig', [
+//        return $this->render('admin/posts/index.html.twig', [
 //            'posts' => $postsRepository->findAll(),
 //        ]);
     }
@@ -62,7 +62,7 @@ class AdminPostsController extends AbstractController
             $this->addFlash('success', "L'annonce a été créée");
             return $this->redirectToRoute('posts_index');
         }
-        return $this->render('back_office/posts/new.html.twig', [
+        return $this->render('admin/posts/new.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
         ]);
@@ -73,7 +73,7 @@ class AdminPostsController extends AbstractController
      */
     public function show(Posts $post): Response
     {
-        return $this->render('back_office/posts/show.html.twig', [
+        return $this->render('admin/posts/show.html.twig', [
             'post' => $post,
         ]);
     }
@@ -93,7 +93,7 @@ class AdminPostsController extends AbstractController
             return $this->redirectToRoute('posts_index');
         }
 
-        return $this->render('back_office/posts/edit.html.twig', [
+        return $this->render('admin/posts/edit.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
         ]);

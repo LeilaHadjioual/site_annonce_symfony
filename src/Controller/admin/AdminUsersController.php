@@ -41,7 +41,7 @@ class AdminUsersController extends AbstractController
             $this->usersRepository->findAll(),
             $request->query->getInt('page', 1),
             5);
-        return $this->render('back_office/users/index.html.twig', [
+        return $this->render('admin/users/index.html.twig', [
             'users' => $users
         ]);
     }
@@ -67,7 +67,7 @@ class AdminUsersController extends AbstractController
             return $this->redirectToRoute('users_index');
         }
 
-        return $this->render('back_office/users/new.html.twig', [
+        return $this->render('admin/users/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
@@ -78,7 +78,7 @@ class AdminUsersController extends AbstractController
      */
     public function show(Users $user): Response
     {
-        return $this->render('back_office/users/show.html.twig', [
+        return $this->render('admin/users/show.html.twig', [
             'user' => $user,
         ]);
     }
@@ -97,7 +97,7 @@ class AdminUsersController extends AbstractController
             return $this->redirectToRoute('users_index');
         }
 
-        return $this->render('back_office/users/edit.html.twig', [
+        return $this->render('admin/users/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);

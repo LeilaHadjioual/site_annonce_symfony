@@ -52,6 +52,8 @@ class UserAccountController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+            $this->addFlash('success', "Votre compte a été crée");
+
 
             return $this->redirectToRoute('app_login');
         }
@@ -75,6 +77,8 @@ class UserAccountController extends AbstractController
 //            $password = $user->getPassword();
 //            $user->setPassword($this->encoder->encodePassword($user, $password));
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', "Le compte utilisateur a été modifié");
+
 
             return $this->redirectToRoute('my_account', ['id' => $user->getId()]);
         }

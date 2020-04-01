@@ -44,6 +44,8 @@ class UsersPostsController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
+            $this->addFlash('success', "L'annonce a été créée");
+
 
             return $this->redirectToRoute('home');
         }

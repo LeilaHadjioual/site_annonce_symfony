@@ -6,7 +6,7 @@
     <div class="container mt-4 formContrainer">
         <a class="btn btnBack" href="{{ path('my_account', {id: user.id}) }}">Retour</a>
         <h1 class="h1Style">Mon compte</h1>
-        {#        {{ include('back_office/posts/_form.html.twig', {'button_label': 'Modifier'}) }}#}
+        {#        {{ include('admin/posts/_form.html.twig', {'button_label': 'Modifier'}) }}#}
         {{ form_start(form) }}
         {#    {{ form_widget(form) }}#}
         {{ form_row(form.firstname) }}
