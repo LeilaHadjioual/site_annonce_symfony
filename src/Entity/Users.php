@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\DTO\AbstractDto;
+use App\DTO\UsersDto;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,14 +15,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  * @UniqueEntity("email")
  */
-class Users implements UserInterface
+class Users extends AbstractEntity implements UserInterface
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+//    /**
+//     * @ORM\Id()
+//     * @ORM\GeneratedValue()
+//     * @ORM\Column(type="integer")
+//     */
+//    private $id;
 
     /**
      * @Assert\Length(
@@ -75,16 +77,31 @@ class Users implements UserInterface
      */
     private $role;
 
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->role = 'ROLE_USER';
+    }
+
+    /**
+     * @param UsersDto $dto
+     */
+    public function setFromDto(AbstractDto $dto): void {
+        $this->setFirstname($dto->firstname);
+        $this->setLastname($dto->lastname);
+        $this->setPhone($dto->phone);
+        $this->setEmail($dto->email);
+        if ($dto->password) {
+            $this->setPassword($dto->password);
+        }
     }
 
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+//    public function getId(): ?int
+//    {
+//        return $this->id;
+//    }
 
     public function getFirstname(): ?string
     {
@@ -220,4 +237,5 @@ class Users implements UserInterface
 
         return $this;
     }
+
 }

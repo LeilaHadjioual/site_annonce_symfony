@@ -2,9 +2,12 @@
 
 namespace App\Form;
 
+use App\DTO\UsersDto;
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,15 +19,18 @@ class UsersType extends AbstractType
         $builder
             ->add('firstname')
             ->add('lastname')
-            ->add('email')
-            ->add('password')
-            ->add('phone');
+            ->add('email', EmailType::class)
+            ->add('phone')
+            ->add('password', PasswordType::class)
+            ->add('passwordConfirm', PasswordType::class);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Users::class,
+            'data_class' => UsersDto::class,
+            'required' => false,
             'translation_domain' => 'forms'
         ]);
     }

@@ -12,11 +12,15 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * @method Users[]    findAll()
  * @method Users[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UsersRepository extends ServiceEntityRepository
+class UsersRepository extends AbstractRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Users::class);
+    }
+
+    public function findByMail(?string $email): ?Users {
+        return $this->findOneBy(['email' => $email]);
     }
 
 

@@ -2,12 +2,15 @@
 
 namespace App\Controller\admin;
 
+use App\DTO\UsersDto;
 use App\Entity\Users;
 use App\Form\UsersType;
 use App\Repository\UsersRepository;
+use App\Services\UsersService;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,15 +23,26 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdminUsersController extends AbstractController
 {
 
-    /**
-     * @var UserPasswordEncoderInterface
-     */
-    private $encoder;
+//    /**
+//     * @var UserPasswordEncoderInterface
+//     */
+//    private $encoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder, UsersRepository $usersRepository)
+    /**
+     * @var UsersService
+     */
+    private $usersService;
+
+    /**
+     * @var UsersRepository
+     */
+    private $usersRepository;
+
+    public function __construct(UsersService $usersService, UsersRepository $usersRepository)
     {
-        $this->encoder = $encoder;
+//        $this->encoder = $encoder;
         $this->usersRepository =$usersRepository;
+        $this->usersService = $usersService;
 
     }
 
@@ -51,25 +65,26 @@ class AdminUsersController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $user = new Users();
-        $form = $this->createForm(UsersType::class, $user);
+        $userDto = new UsersDto();
+        $form = $this->createForm(UsersType::class, $userDto, ['validation_groups' => ['Default', 'add']]);
         $form->handleRequest($request);
 
+        if ($userDto->password && $userDto->password !== $userDto->passwordConfirm) {
+            $form->get('passwordConfirm')->addError(new FormError('Les mots de passes ne correspondent pas'));
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $role = 'ROLE_USER';
-            $user->setRole($role);
-            $password = $user->getPassword();
-            $user->setPassword($this->encoder->encodePassword($user, $password));
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $user = new Users();
+            $this->usersService->addOrUpdate($userDto, $user);
+            $this->addFlash('success', "Le compte a été crée");
 
             return $this->redirectToRoute('users_index');
         }
 
         return $this->render('admin/users/new.html.twig', [
-            'user' => $user,
+//            'user' => $user,
             'form' => $form->createView(),
+            'isAdd' => true
         ]);
     }
 
@@ -86,13 +101,22 @@ class AdminUsersController extends AbstractController
     /**
      * @Route("/{id}/edit", name="users_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Users $user): Response
+    public function edit(Request $request): Response
     {
-        $form = $this->createForm(UsersType::class, $user);
+        /**@var Users $user */
+        $user = $this->getUser();
+        $userDto = new UsersDto();
+        $userDto->setFromEntity($user);
+
+        $form = $this->createForm(UsersType::class, $userDto);
         $form->handleRequest($request);
+        if ($userDto->password && $userDto->password !== $userDto->passwordConfirm) {
+            $form->get('passwordConfirm')->addError(new FormError('Les mots de passes ne correspondent pas'));
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->usersService->addOrUpdate($userDto, $user);
+            $this->addFlash('success', "Le compte utilisateur a été modifié");
 
             return $this->redirectToRoute('users_index');
         }
@@ -100,6 +124,7 @@ class AdminUsersController extends AbstractController
         return $this->render('admin/users/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+            'isAdd' => false
         ]);
     }
 
@@ -113,6 +138,8 @@ class AdminUsersController extends AbstractController
             $entityManager->remove($user);
             $entityManager->flush();
         }
+
+
 
         return $this->redirectToRoute('users_index');
     }
