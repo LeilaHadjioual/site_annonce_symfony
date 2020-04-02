@@ -101,10 +101,10 @@ class AdminUsersController extends AbstractController
     /**
      * @Route("/{id}/edit", name="users_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request): Response
+    public function edit(Request $request, Users $user): Response
     {
-        /**@var Users $user */
-        $user = $this->getUser();
+//        /**@var Users $user */
+//        $user = new Users();
         $userDto = new UsersDto();
         $userDto->setFromEntity($user);
 
@@ -133,10 +133,13 @@ class AdminUsersController extends AbstractController
      */
     public function delete(Request $request, Users $user): Response
     {
+
+
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();
+            dump($user);
         }
 
 

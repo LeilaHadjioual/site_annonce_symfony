@@ -112,6 +112,6 @@ class AdminPostsController extends AbstractController
 
         }
 
-        return $this->redirectToRoute('posts_index');
+        return $this->redirectToRoute('home');
     }
 }

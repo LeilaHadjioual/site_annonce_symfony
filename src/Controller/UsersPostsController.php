@@ -55,7 +55,7 @@ class UsersPostsController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', "L'annonce a été créée");
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('my_posts');
         }
 
         return $this->render('usersPosts/createPost.html.twig', [

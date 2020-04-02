@@ -18,9 +18,9 @@
     </div>
 
     <div class="container" id="containerAllPost">
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">{{ message }}</div>
-        {% endfor %}
+{#        {% for message in app.flashes('success') %}#}
+{#            <div class="alert alert-success">{{ message }}</div>#}
+{#        {% endfor %}#}
         <div class="column flex">
             {% for post in posts %}
                 {% include 'components/card.html.twig' %}
@@ -35,13 +35,13 @@
 
 {% endblock %}
 
-{% block javascripts %}
-    <script>
-        $(document).ready(function () {
-            setTimeout(function () {
-                $('.alert-success').fadeOut()
-            }, 3000);
-        });
-    </script>
-{% endblock %}
+{#{% block javascripts %}#}
+{#    <script>#}
+{#        $(document).ready(function () {#}
+{#            setTimeout(function () {#}
+{#                $('.alert-success').fadeOut()#}
+{#            }, 3000);#}
+{#        });#}
+{#    </script>#}
+{#{% endblock %}#}
 

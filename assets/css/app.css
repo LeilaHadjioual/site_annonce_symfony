@@ -103,6 +103,7 @@ body {
 /**************cards homepage**************/
 .postCard {
     max-width: 40em;
+    min-width: 40em;
     max-height: 15em;
     margin-bottom: 3em;
     box-shadow: 10px 8px 20px #999;

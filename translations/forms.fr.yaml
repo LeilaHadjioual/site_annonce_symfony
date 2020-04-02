@@ -4,9 +4,11 @@ Firstname: Prénom
 Lastname: Nom
 Phone: Téléphone
 Password: Mot de passe
+Email : E-mail
 Search: Rechercher
 Zip code: Code Postal
 City: Ville
 Description: Description
 Image file : Image
 Select file: Séléctionner une image
+Password confirm : Confirmer le mot de passe
