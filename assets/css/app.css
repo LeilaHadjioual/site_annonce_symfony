@@ -208,6 +208,52 @@ body {
     color: white;
 }
 
+#button {
+    display: inline-block;
+    background-color: #123C69;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s,
+    opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+#button::after {
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.2em;
+    line-height: 45px;
+    color: white;
+}
+#button:hover {
+    cursor: pointer;
+    background-color: #ac3b61;
+}
+#button:active {
+    background-color: #bab2b5;
+}
+#button.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.btnBackAccount{
+    background-color: #ac3b61;
+    color: white;
+    margin-top: 3em;
+    margin-left: -19em;
+    margin-bottom: -5em;
+
+}
+
 /*end all buttons*/
 
 /************formulaires***********/
@@ -221,14 +267,6 @@ body {
     height: 38em;
 }
 
-.btnBackAccount{
-    background-color: #ac3b61;
-    color: white;
-    margin-top: 3em;
-    margin-left: -19em;
-    margin-bottom: -5em;
-
-}
 /********end form*******/
 
 #userEmail{
