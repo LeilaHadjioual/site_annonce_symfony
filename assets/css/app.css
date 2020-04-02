@@ -213,6 +213,21 @@ body {
 /************formulaires***********/
 .formContrainer{
     width: 30em;
+    min-height: 35em;
+}
+
+.accountForm{
+    width: 50%;
+    height: 38em;
+}
+
+.btnBackAccount{
+    background-color: #ac3b61;
+    color: white;
+    margin-top: 3em;
+    margin-left: -19em;
+    margin-bottom: -5em;
+
 }
 /********end form*******/
 
@@ -228,7 +243,7 @@ body {
 .profile{
     text-align: center;
     background-color: floralwhite;
-    height: 25em;
+    height: 23em;
     margin-top: 3em;
 }
 

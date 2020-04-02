@@ -3,14 +3,29 @@
 {% block title %}Mon compte {% endblock %}
 
 {% block body %}
-    <div class="container mt-4 formContrainer">
-        <a class="btn btnBack" href="{{ path('my_account', {id: user.id}) }}">Retour</a>
+    <div class="container mt-4 accountForm">
+        <a class="btn btnBackAccount" href="{{ path('my_account', {id: user.id}) }}">Retour</a>
         <h1 class="h1Style">Mon compte</h1>
         {#        {{ include('admin/posts/_form.html.twig', {'button_label': 'Modifier'}) }}#}
         {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btnSave">{{ button_label|default('Enregistrer') }}</button>
+
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.firstname) }}</div>
+            <div class="col-md-6">{{ form_row(form.lastname) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.phone) }}</div>
+            <div class="col-md-6">{{ form_row(form.email) }}</div>
+        </div>
+        <hr>
+        <p><small>Modifier votre mot de passe</small></p>
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.password) }}</div>
+            <div class="col-md-6">{{ form_row(form.passwordConfirm) }}</div>
+        </div>
+        <div class="text-right">
+            <button class="btn btnSave">{{ button_label|default('Enregistrer') }}</button>
+        </div>
         {{ form_end(form) }}
-        {#        {{ form_end(form, {'render_rest': false}) }}#}
     </div>
 {% endblock %}
