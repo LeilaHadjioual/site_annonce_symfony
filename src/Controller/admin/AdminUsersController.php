@@ -133,16 +133,12 @@ class AdminUsersController extends AbstractController
      */
     public function delete(Request $request, Users $user): Response
     {
-
-
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();
-            dump($user);
         }
-
-
+        //TODO: supprimer les posts liés à l'utilisateur ?
 
         return $this->redirectToRoute('users_index');
     }

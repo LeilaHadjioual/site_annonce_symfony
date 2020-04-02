@@ -4,9 +4,8 @@
 
 {% block body %}
     <div class="container mt-4 formContrainer">
-    <h1 class="h1Style">Poster une annonce</h1>
-{#    {{ include('admin/posts/_form.html.twig') }}#}
-
+        <h1 class="h1Style">Poster une annonce</h1>
+        {#    {{ include('admin/posts/_form.html.twig') }}#}
         {{ form_start(form) }}
         {{ form_row(form.title) }}
         {{ form_row(form.description) }}
@@ -14,7 +13,6 @@
         {{ form_row(form.zipCode) }}
         {{ form_row(form.city) }}
         {{ form_widget(form.user, { 'attr': {'style': 'display:none'} }) }}
-
         <div class="text-right">
             <button class="btn btnSave">{{ button_label|default('Enregistrer') }}</button>
         </div>
@@ -24,7 +22,7 @@
 
 {% block javascripts %}
     <script>
-        $('.custom-file-input').on('change', function(event) {
+        $('.custom-file-input').on('change', function (event) {
             var inputFile = event.currentTarget;
             $(inputFile).parent()
                 .find('.custom-file-label')

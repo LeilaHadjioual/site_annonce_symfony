@@ -28,8 +28,10 @@
                     <td class="maxLines">{{ post.description }}</td>
                     <td>{{ post.user.email }}</td>
                     <td>
-                        <a href="{{ path('posts_show', {'id': post.id}) }}" class="btn btnShow"><i class="fa fa-info"></i></a>
-                        <a href="{{ path('posts_edit', {'id': post.id}) }}" class="btn btnEdit"><i class="fa fa-edit"></i></a>
+                        <a href="{{ path('posts_show', {'id': post.id}) }}" class="btn btnShow"><i
+                                    class="fa fa-info"></i></a>
+                        <a href="{{ path('posts_edit', {'id': post.id}) }}" class="btn btnEdit"><i
+                                    class="fa fa-edit"></i></a>
                     </td>
                 </tr>
             {% else %}
@@ -51,8 +53,10 @@
 
 {% block javascripts %}
     <script>
-        $(document).ready(function(){
-            setTimeout(function(){ $('.alert-success').fadeOut() }, 3000);
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('.alert-success').fadeOut()
+            }, 3000);
         });
     </script>
 {% endblock %}

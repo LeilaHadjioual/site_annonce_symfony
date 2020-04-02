@@ -40,10 +40,6 @@ class AdminPostsController extends AbstractController
         return $this->render('admin/posts/index.html.twig', [
             'posts' => $posts
         ]);
-//        $posts = $this->postsRepository->findAll();
-//        return $this->render('admin/posts/index.html.twig', [
-//            'posts' => $postsRepository->findAll(),
-//        ]);
     }
 
     /**

@@ -82,7 +82,7 @@ class UserAccountController extends AbstractController
         $form = $this->createForm(UsersType::class, $userDto);
         $form->handleRequest($request);
         if ($userDto->password && $userDto->password !== $userDto->passwordConfirm) {
-            $form->get('passwordConfirm')->addError(new FormError('Les mots de passes ne correspondent pas'));
+            $form->get('passwordConfirm')->addError(new FormError('Les mots de passe ne sont pas identiques'));
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -101,7 +101,7 @@ class UserAccountController extends AbstractController
 
 
     /**
-     * @Route("/my-posts", name="my_posts", methods={"GET"})
+     * @Route("/user/account/posts", name="user_posts", methods={"GET"})
      */
     public function getUserPosts(): Response
     {

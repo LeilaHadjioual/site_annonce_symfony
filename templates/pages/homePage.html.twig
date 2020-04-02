@@ -18,30 +18,18 @@
     </div>
 
     <div class="container" id="containerAllPost">
-{#        {% for message in app.flashes('success') %}#}
-{#            <div class="alert alert-success">{{ message }}</div>#}
-{#        {% endfor %}#}
         <div class="column flex">
             {% for post in posts %}
                 {% include 'components/card.html.twig' %}
-                {% else %}
+            {% else %}
                 aucune annonce trouvée
             {% endfor %}
         </div>
     </div>
+
     <div class="pagination">
         {{ knp_pagination_render(posts) }}
     </div>
 
 {% endblock %}
-
-{#{% block javascripts %}#}
-{#    <script>#}
-{#        $(document).ready(function () {#}
-{#            setTimeout(function () {#}
-{#                $('.alert-success').fadeOut()#}
-{#            }, 3000);#}
-{#        });#}
-{#    </script>#}
-{#{% endblock %}#}
 

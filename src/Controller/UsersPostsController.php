@@ -17,12 +17,12 @@ use Symfony\Component\Security\Core\User\User;
 
 
 /**
- * @Route("/user/my_post")
+ * @Route("/user/my-post")
  */
 class UsersPostsController extends AbstractController
 {
 //    /**
-//     * @Route("/myposts", name="my_posts", methods={"GET"})
+//     * @Route("/myposts", name="posts", methods={"GET"})
 //     */
 //    public function index(): Response
 //    {
@@ -55,7 +55,7 @@ class UsersPostsController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', "L'annonce a été créée");
 
-            return $this->redirectToRoute('my_posts');
+            return $this->redirectToRoute('user_posts');
         }
 
         return $this->render('usersPosts/createPost.html.twig', [
@@ -78,7 +78,7 @@ class UsersPostsController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', "L'annonce a été modifiée");
 
-            return $this->redirectToRoute('my_posts');
+            return $this->redirectToRoute('user_posts');
         }
 
         return $this->render('usersPosts/editPost.html.twig', [

@@ -8,14 +8,7 @@
         <h1 class="h1Style">Mon compte</h1>
         {#        {{ include('admin/posts/_form.html.twig', {'button_label': 'Modifier'}) }}#}
         {{ form_start(form) }}
-            {{ form_widget(form) }}
-{#        {{ form_row(form.firstname) }}#}
-{#        {{ form_row(form.lastname) }}#}
-{#        {{ form_row(form.email) }}#}
-{#        {{ form_row(form.phone) }}#}
-{#        {{ form_row(form.password) }}#}
-{#        {{ form_row(form.passwordConfirm) }}#}
-
+        {{ form_widget(form) }}
         <button class="btn btnSave">{{ button_label|default('Enregistrer') }}</button>
         {{ form_end(form) }}
         {#        {{ form_end(form, {'render_rest': false}) }}#}
