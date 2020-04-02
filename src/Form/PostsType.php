@@ -28,11 +28,10 @@ class PostsType extends AbstractType
             ->add('city')
             ->add('user', EntityType::class, [
                 'class' => Users::class,
-                'choice_label' => 'firstname',
+                'choice_label' => 'email',
                 'query_builder' => function (UsersRepository $usersRepository) {
-                    return $usersRepository->createQueryBuilder('u')
-                        ->andWhere('u.firstname = :val')
-                        ->setParameter('val', 'leila');
+                    return $usersRepository->createQueryBuilder('u');
+
                 }
             ]);
     }

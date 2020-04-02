@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\User;
 
 
@@ -29,6 +30,12 @@ class UsersPostsController extends AbstractController
 ////            'posts' => $postsRepository->findAll(),
 //        ]);
 //    }
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
 
 
     /**
@@ -41,11 +48,12 @@ class UsersPostsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $currentUser = $this->security->getUser();
+            $post->setUser($currentUser);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
             $this->addFlash('success', "L'annonce a été créée");
-
 
             return $this->redirectToRoute('home');
         }
@@ -64,6 +72,7 @@ class UsersPostsController extends AbstractController
     {
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();

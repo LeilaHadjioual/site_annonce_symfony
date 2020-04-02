@@ -34,11 +34,14 @@
                 </li>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('posts_index') }}">Gérer les annonces</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('users_index') }}">Gérer les utilisateurs</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Accès administrateur
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{{ path('posts_index') }}">Gérer les annonces</a>
+                        <a class="dropdown-item" href="{{ path('users_index') }}">Gérer les utilisateurs</a>
+                    </div>
                 </li>
             {% endif %}
         </ul>
@@ -51,7 +54,7 @@
                         <span>{{ app.user.firstname }}</span>
                     {% endif %}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     {% if is_granted('ROLE_USER') %}
                         <a class="dropdown-item" href="{{ path('my_account', {id: app.user.id}) }}">Mon compte</a>
                         <div class="dropdown-divider"></div>
