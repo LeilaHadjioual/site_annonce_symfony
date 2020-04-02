@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Posts;
 use App\Entity\Users;
 use App\Repository\UsersRepository;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -31,9 +32,9 @@ class PostsType extends AbstractType
                 'choice_label' => 'email',
                 'query_builder' => function (UsersRepository $usersRepository) {
                     return $usersRepository->createQueryBuilder('u');
-
                 }
-            ]);
+            ])
+            ->add('archive');
     }
 
     public function configureOptions(OptionsResolver $resolver)

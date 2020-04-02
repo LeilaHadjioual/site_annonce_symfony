@@ -71,6 +71,11 @@ class Posts
     private $zipCode;
 
     /**
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    private $archive;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
@@ -204,7 +209,21 @@ class Posts
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getArchive()
+    {
+        return $this->archive;
+    }
 
+    /**
+     * @param mixed $archive
+     */
+    public function setArchive($archive): void
+    {
+        $this->archive = $archive;
+    }
 
 
 }
