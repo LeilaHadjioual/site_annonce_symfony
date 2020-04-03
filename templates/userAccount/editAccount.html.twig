@@ -20,7 +20,7 @@
         <hr>
         <p><small>Modifier votre mot de passe</small></p>
         <div class="row">
-            <div class="col-md-6">{{ form_row(form.password) }}</div>
+            <div class="col-md-6">{{ form_row(form.password, {'label' : 'Nouveau mot de passe'}) }}</div>
             <div class="col-md-6">{{ form_row(form.passwordConfirm) }}</div>
         </div>
         <div class="text-right">
