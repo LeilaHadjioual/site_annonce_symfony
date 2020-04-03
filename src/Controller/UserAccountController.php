@@ -9,6 +9,7 @@ use App\Entity\Users;
 use App\Form\UsersType;
 use App\Repository\UsersRepository;
 use App\Services\UsersService;
+use http\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,7 +65,7 @@ class UserAccountController extends AbstractController
         return $this->render('userAccount/createAccount.html.twig', [
 //            'user' => $user,
             'form' => $form->createView(),
-            'isAdd' => true
+
         ]);
     }
 
@@ -94,8 +95,7 @@ class UserAccountController extends AbstractController
 
         return $this->render('userAccount/editAccount.html.twig', [
             'user' => $user,
-            'form' => $form->createView(),
-            'isAdd' => false
+            'form' => $form->createView()
         ]);
     }
 

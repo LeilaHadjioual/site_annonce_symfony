@@ -29,7 +29,7 @@ class UsersDto extends AbstractDto  {
 
     /**
      * @var string
-     * @Assert\Regex("/^([0-9]{2} ){4}[0-9]{2}/")
+     * @Assert\Regex("/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/")
      */
     public $phone;
 

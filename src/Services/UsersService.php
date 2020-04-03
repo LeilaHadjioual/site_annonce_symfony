@@ -34,7 +34,7 @@ class UsersService extends AbstractEntityService
         if ($dto->email !== $entity->getEmail()) {
             $userWithNewMail = $this->repository->findByMail($dto->email);
             if ($userWithNewMail) {
-                throw new Exception('Il y a déjà un utilisateur avec cette adresse mail');
+                throw new Exception('Cette adresse mail est déjà utilisée');
             }
         }
         if ($dto->password) {

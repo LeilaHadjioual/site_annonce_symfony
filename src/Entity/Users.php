@@ -25,44 +25,30 @@ class Users extends AbstractEntity implements UserInterface
 //    private $id;
 
     /**
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 50,
-     *      minMessage = "Le prénom doit avoir au moins {{ limit }} caractères",
-     *      maxMessage = "Le prénom ne doit pas avoir plus de {{ limit }} caractères",
-     *      allowEmptyString = false
-     *     )
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $firstname;
 
     /**
-     * * @Assert\Length(
-     *      min = 2,
-     *      max = 60,
-     *      minMessage = "Le nom doit avoir au moins {{ limit }} caractères",
-     *      maxMessage = "Le nom ne doit pas avoir plus de {{ limit }} caractères",
-     *      allowEmptyString = false
-     *     )
      * @ORM\Column(type="string", length=255)
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email(
-     *     message = "cet email '{{ value }}' n'est pas valide"
+     *     message = "cet email n'est pas valide"
      * )
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
 
     /**
-     * @Assert\Regex("/^([0-9]{2} ){4}[0-9]{2}/")
+     * @Assert\Regex("/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/")
      * @ORM\Column(type="string", length=255)
      */
     private $phone;
