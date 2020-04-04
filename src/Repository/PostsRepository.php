@@ -49,14 +49,6 @@ class PostsRepository extends ServiceEntityRepository
     }
     */
 
-    public function findAllActivePost()
-    {
-        return $this->createQueryBuilder('p')
-            ->where('p.archive = false')
-            ->getQuery()
-            ->getResult();
-    }
-
     /**
      * @param PostSearch $search
      * @return mixed

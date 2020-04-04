@@ -33,23 +33,6 @@ class HomeController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator)
     {
-//        $form = $this->createFormBuilder()
-//            ->setAction($this->generateUrl('home'))
-//            ->add('query', TextType::class)
-//            ->add('Search', SubmitType::class, [
-//                'attr' => [
-//                    'class' => 'btn btn-primary'
-//                ]
-//            ])
-//            ->getForm();
-//        $query = $request->request->get('form')['query'];
-//        if (!$query) {
-//            $postsByquery = $this->postsRepository->findAll();
-//
-//        } else {
-//            $postsByquery = $this->postsRepository->findByName($query);
-//        }
-
         $search = new PostSearch();
         $form = $this->createForm(PostSearchType::class, $search);
         $form->handleRequest($request);

@@ -8,16 +8,13 @@
             <a class="btn btnBack" href="{{ path('user_posts') }}">Retour</a>
         </div>
         <h1 class="h1Style">Editer une annonce</h1>
-        {#        {{ include('admin/posts/_form.html.twig', {'button_label': 'Modifier'}) }}#}
-        {#        <div>#}
-        {#            {{ include('admin/posts/_delete_form.html.twig') }}#}
-        {#        </div>#}
         {{ form_start(form) }}
         {{ form_row(form.title) }}
         {{ form_row(form.description) }}
         {{ form_row(form.imageFile) }}
         {{ form_row(form.zipCode) }}
         {{ form_row(form.city) }}
+{#        TODO : ne pas utiliser le form admin à cause du champ user ?#}
         {{ form_widget(form.user, { 'attr': {'style': 'display:none'} }) }}
         {{ form_row(form.archive) }}
         <div class="text-right">
