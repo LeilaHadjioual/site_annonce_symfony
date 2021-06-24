@@ -14,7 +14,7 @@
                 <h5 class="card-title">{{ post.title }}</h5>
                 <p class="card-text maxLines">{{ post.description }}</p>
                 <p class="card-text"><small class="text-muted">{{ post.zipCode }} {{ post.city }}</small></p>
-                <p class="card-text" style="margin-top: -1em"><small class="text-muted">publié le {{ post.createdAt.date|date("d/m/Y H:i", "Europe/Paris") }}</small></p>
+{#                <p class="card-text" style="margin-top: -1em"><small class="text-muted">publié le {{ post.createdAt.date|date("d/m/Y H:i", "Europe/Paris") }}</small></p>#}
                <div> <a href="{{ path('get_post', {id: post.id}) }}" class="btn btnShow">En savoir plus</a></div>
             </div>
         </div>
